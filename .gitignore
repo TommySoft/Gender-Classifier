@@ -1,0 +1,35 @@
+
+from sklearn import tree
+from sklearn.linear_model import SGDClassifier
+from sklearn import svm
+
+#[height,weight,shoe size]
+X=[[181,80,44],[177,70,43],[160,60,38],[154,54,37],
+   [160,65,40],[190,90,47],[175,64,39],[167,70,40],
+   [171,75,42],[159,55,36],[180,75,42]]
+Y=['male','female','female','female','male','male','male',
+   'female','male','female','male',]
+   
+def DecisionTree():
+    clf=tree.DecisionTreeClassifier()
+
+    clf=clf.fit(X,Y)
+
+    prediction=clf.predict([[194,82,46]])
+
+    print "DecisionTree prediction: " ,prediction
+  
+def Linear():
+    clf = SGDClassifier(loss="hinge", penalty="l2")
+    clf.fit(X, Y)
+    print "Linear model: ",clf.predict([[194,82,46]])
+    
+def Svm():
+    clf=svm.SVC()
+    clf.fit(X,Y)
+    print "Support Vector Classification: ",clf.predict([[194,82,46]])
+    
+    
+Svm()       
+Linear()    
+DecisionTree()
